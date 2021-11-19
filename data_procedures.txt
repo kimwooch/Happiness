@@ -1,0 +1,5 @@
+This document outlines data current data gathering procedures, and should be updated as our approach changes over time.
+
+Main datasets to use are the "Data Panel" dataset in 2021 and the "Data for Table 2.1" in 2020 (subject to change).
+Meaning of variable names is included in each respective report. We might want to focus on Life Ladder scores, since they represent a large portion of subjective well-being.
+We still want to use datasets used for some of the figures, especially if they include region indicators.
