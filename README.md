@@ -1,1 +1,1 @@
-# Pursiut of Happiness
+# Pursuit of Happiness
