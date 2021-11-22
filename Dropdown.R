@@ -4,7 +4,7 @@ ui <- fluidPage(
               c("Select..." = "",
                 "Latin America/Caribbean" = "la",
                 "North America" = "n",
-                "Western Europe" = "w"))
+                "Western Europe" = "w")),
   radioButtons(inputId = "reg", label = "Choose your region(s)",
                c("World" = "all",
                  "Latin America/Caribbean" = "lac",
