@@ -1,22 +1,60 @@
 library(shiny)
-ui <- fluidPage(
-  selectInput(inputId = "region", label = "Choose a region",
-              c("Select..." = "",
-                "Latin America/Caribbean" = "la",
-                "North America" = "n",
-                "Western Europe" = "w")),
-  radioButtons(inputId = "reg", label = "Choose your region(s)",
-               c("World" = "all",
-                 "Latin America/Caribbean" = "lac",
-                 "North America" = "na",
-                 "Western Europe" = "we"))
-
-)
+ui <- navbarPage("Pursuit of Happiness",
+                 tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
+                 tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
+                   selectInput(inputId = "region", label = "Choose a region",
+                               c("Select..." = "",
+                                 "Latin America/Caribbean" = "la",
+                                 "North America" = "n",
+                                 "Western Europe" = "w")),
+                   radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                c("World" = "all",
+                                  "Latin America/Caribbean" = "lac",
+                                  "North America" = "na",
+                                  "Western Europe" = "we"))
+                   
+                 )),
+                 tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
+                 tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
+                   selectInput(inputId = "region", label = "Choose a region",
+                               c("Select..." = "",
+                                 "Latin America/Caribbean" = "la",
+                                 "North America" = "n",
+                                 "Western Europe" = "w")),
+                   radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                c("World" = "all",
+                                  "Latin America/Caribbean" = "lac",
+                                  "North America" = "na",
+                                  "Western Europe" = "we"))
+                   
+                 )),
+                 tabPanel("References",h1("References"),fluidPage(
+                   selectInput(inputId = "region", label = "Choose a region",
+                               c("Select..." = "",
+                                 "Latin America/Caribbean" = "la",
+                                 "North America" = "n",
+                                 "Western Europe" = "w")),
+                   radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                c("World" = "all",
+                                  "Latin America/Caribbean" = "lac",
+                                  "North America" = "na",
+                                  "Western Europe" = "we"))
+                   
+                 )))
+# fluidPage(
+#   selectInput(inputId = "region", label = "Choose a region",
+#               c("Select..." = "",
+#                 "Latin America/Caribbean" = "la",
+#                 "North America" = "n",
+#                 "Western Europe" = "w")),
+#   radioButtons(inputId = "reg", label = "Choose your region(s)",
+#                c("World" = "all",
+#                  "Latin America/Caribbean" = "lac",
+#                  "North America" = "na",
+#                  "Western Europe" = "we"))
+# 
+# )
 
 server <- function(input, output) {}
 
 shinyApp(ui = ui, server = server)
-
-
-
-
