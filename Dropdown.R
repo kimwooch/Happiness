@@ -81,6 +81,13 @@ ui <- navbarPage("Pursuit of Happiness",
 # 
 # )
 
-server <- function(input, output) {}
+#YouTube video for server: https://www.youtube.com/watch?v=-h6xveotXXc&t=776s
+server <- function(input, output) {
+  output$plot2 <- renderPlotly(
+    if("GDP per Capita" %in% input$varSelect)(
+      plot2b <- plot_ly( )
+    )
+  )
+}
 
 shinyApp(ui = ui, server = server)
