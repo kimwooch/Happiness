@@ -4,15 +4,21 @@ ui <- navbarPage("Pursuit of Happiness",
                  tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
                    selectInput(inputId = "region", label = "Choose a region",
                                c("Select..." = "",
-                                 "Latin America/Caribbean" = "la",
-                                 "North America" = "n",
-                                 "Western Europe" = "w")),
+                                 "Latin America and Caribbean" = "la",
+                                 "North America and ANZ" = "no",
+                                 "Western Europe" = "we",
+                                 "Central and Eastern Europe" = "ce",
+                                 "Middle East and North Africa" = "mi",
+                                 "Sub-Saharan Africa" = "su",
+                                 "East Asia" = "ea",
+                                 "Southeast Asia" = "so",
+                                 "Commonwealth of Independent States" = "co"
+                                 )),
                    radioButtons(inputId = "reg", label = "Choose your region(s)",
                                 c("World" = "all",
                                   "Latin America/Caribbean" = "lac",
                                   "North America" = "na",
                                   "Western Europe" = "we"))
-                   
                  )),
                  tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
                  tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
