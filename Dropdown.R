@@ -12,7 +12,8 @@ ui <- navbarPage("Pursuit of Happiness",
                                  "Sub-Saharan Africa" = "su",
                                  "East Asia" = "ea",
                                  "Southeast Asia" = "so",
-                                 "Commonwealth of Independent States" = "co"
+                                 "Commonwealth of Independent States" = "co",
+                                 "Global" = "gl"
                                  )),
                    radioButtons(inputId = "reg", label = "Choose your region(s)",
                                 c("World" = "all",
