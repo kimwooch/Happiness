@@ -2,7 +2,8 @@ library(shiny)
 ui <- navbarPage("Pursuit of Happiness",
                  tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
                  tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
-                   selectInput(inputId = "region", label = "Choose a region",
+                   mainPanel(
+                     selectInput(inputId = "region", label = "Choose a region",
                                c("Select..." = "",
                                  "Latin America and Caribbean" = "la",
                                  "North America and ANZ" = "no",
@@ -25,8 +26,10 @@ ui <- navbarPage("Pursuit of Happiness",
                                   "East Asia" = "ea",
                                   "Southeast Asia" = "so",
                                   "Commonwealth of Independent States" = "co",
-                                  "World" = "wo"))
-                 )),
+                                  "World" = "wo")),
+                 
+                   img(src = 'quokka.png', align = "right"),
+                   ))),
                  tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
                  tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
                    selectInput(inputId = "region", label = "Choose a region",
