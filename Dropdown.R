@@ -13,8 +13,8 @@ ui <- navbarPage("Pursuit of Happiness",
                                  "East Asia" = "ea",
                                  "Southeast Asia" = "so",
                                  "Commonwealth of Independent States" = "co",
-                                 "Global" = "gl"
-                                 )),
+                                 "World" = "wo"))
+                                ,
                    radioButtons(inputId = "reg", label = "Choose your region(s)",
                                 c("Latin America and Caribbean" = "la",
                                   "North America and ANZ" = "no",
@@ -25,7 +25,7 @@ ui <- navbarPage("Pursuit of Happiness",
                                   "East Asia" = "ea",
                                   "Southeast Asia" = "so",
                                   "Commonwealth of Independent States" = "co",
-                                  "Global" = "gl"
+                                  "World" = "wo"))
                  )),
                  tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
                  tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
