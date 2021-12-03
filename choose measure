@@ -1,0 +1,109 @@
+library(shiny)
+library(ggplot2)
+wh <- read.csv(file = 'downloads/wh2020.csv')
+ui <- navbarPage("Pursuit of Happiness",
+                 tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
+                 tabPanel("Exploring the Data",h1("Exploring the Data"),
+                          fluidPage(
+                   mainPanel(
+                     
+                     radioButtons(inputId = "meas", label = "Choose your measurement",
+                                  c("GDP Per Capita" = "X21GDPpc",
+                                    "Social Support" = "X21Social.support",
+                                    "Life Expectancy" = "X21life",
+                                    "Freedom to Make Life Choices" = "X21choices",
+                                    "Generosity" = "X21generosity",
+                                    "Perceptions of Corruption" = "X21corruption")),
+
+                     
+                     img(src = 'quokka.png', align = "right"),
+                     plotOutput("dotp")
+                   ))),
+                 tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
+                 tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
+                   selectInput(inputId = "region", label = "Choose a region",
+                               c("Select..." = "",
+                                 "Latin America/Caribbean" = "la",
+                                 "North America" = "n",
+                                 "Western Europe" = "w")),
+                   radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                c("World" = "all",
+                                  "Latin America/Caribbean" = "lac",
+                                  "North America" = "na",
+                                  "Western Europe" = "we"))
+                   
+                 )),
+                 tabPanel("References",h1("References"),fluidPage(
+                   selectInput(inputId = "region", label = "Choose a region",
+                               c("Select..." = "",
+                                 "Latin America/Caribbean" = "la",
+                                 "North America" = "n",
+                                 "Western Europe" = "w")),
+                   radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                c("World" = "all",
+                                  "Latin America/Caribbean" = "lac",
+                                  "North America" = "na",
+                                  "Western Europe" = "we")),
+                   
+                 )))
+# fluidPage(
+#   selectInput(inputId = "region", label = "Choose a region",
+#               c("Select..." = "",
+#                 "Latin America/Caribbean" = "la",
+#                 "North America" = "n",
+#                 "Western Europe" = "w")),
+#   radioButtons(inputId = "reg", label = "Choose your region(s)",
+#                c("World" = "all",
+#                  "Latin America/Caribbean" = "lac",
+#                  "North America" = "na",
+#                  "Western Europe" = "we"))
+# 
+# )
+
+server <- function(input, output) {
+  output$dotp <- renderPlot({
+    if("X21GDPpc" %in% input$meas)(
+    ggplot(data = wh) + 
+      geom_point(mapping = aes(x = X21GDPpc, y = X21Score, color = Region)) + 
+      ggtitle("Effect of GDP on Happiness") +
+      xlab("GDP Per Capita (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21Social.support" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21Social.support, y = X21Score, color = Region)) +
+        ggtitle("Effect of Social Support on Happiness") +
+        xlab("Social Support (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21life" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21life, y = X21Score, color = Region))+
+        ggtitle("Effect of Life Expectancy on Happiness") +
+        xlab("Life Expectancy (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21choices" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21choices, y = X21Score, color = Region))+
+        ggtitle("Effect of Freedom on Happiness") +
+        xlab("Freedom to Make Life Choices (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21generosity" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21generosity, y = X21Score, color = Region))+
+        ggtitle("Effect of Generosity on Happiness") +
+        xlab("Generosity (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21corruption" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21corruption, y = X21Score, color = Region))+
+        ggtitle("Effect of Corruption on Happiness") +
+        xlab("Perception of Corruption (2021)") + ylab("Happiness Score (2021)"))
+    
+    
+  })
+}
+    
+    
+    
+    
+
+shinyApp(ui = ui, server = server)

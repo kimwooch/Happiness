@@ -1,50 +1,51 @@
-library(shiny)
+llibrary(shiny)
 library(ggplot2)
 library(plotly)
-ui <- fluidPage( navbarPage("Pursuit of Happiness", collapsible = TRUE, fluid = TRUE, inverse = TRUE,
+
+ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, fluid = TRUE, 
                  tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
                  tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
                    mainPanel(
                      selectInput(inputId = "region", label = "Choose a region",
-                               c("Select..." = "",
-                                 "Latin America and Caribbean" = "la",
-                                 "North America and ANZ" = "no",
-                                 "Western Europe" = "we",
-                                 "Central and Eastern Europe" = "ce",
-                                 "Middle East and North Africa" = "mi",
-                                 "Sub-Saharan Africa" = "su",
-                                 "East Asia" = "ea",
-                                 "Southeast Asia" = "so",
-                                 "Commonwealth of Independent States" = "co",
-                                 "World" = "wo"))
-                                ,
-                   radioButtons(inputId = "reg", label = "Choose your region(s)",
-                                c("Latin America and Caribbean" = "la",
-                                  "North America and ANZ" = "no",
-                                  "Western Europe" = "we",
-                                  "Central and Eastern Europe" = "ce",
-                                  "Middle East and North Africa" = "mi",
-                                  "Sub-Saharan Africa" = "su",
-                                  "East Asia" = "ea",
-                                  "Southeast Asia" = "so",
-                                  "Commonwealth of Independent States" = "co",
-                                  "World" = "wo")),
-                   
-                   checkboxGroupInput("varSelect", "Choose Measures of Happiness",
-                                      c("GDP per Capita",
-                                      "Generosity",
-                                      "Perceived Corruption",
-                                      "Social Support",
-                                      "Life Expectancy",
-                                      "Free Will")),
-                 
-                  tags$img(height = 100,
-                          width = 100,
-                          src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"),
-                  
-                  tags$img(height = 100,
-                           width = 100,
-                           src = "https://i.pinimg.com/564x/57/d4/27/57d427b8b067fa790399f301bbe177c0.jpg"),
+
+                                 c("Select..." = "",
+                                   "Latin America and Caribbean" = "la",
+                                   "North America and ANZ" = "no",
+                                   "Western Europe" = "we",
+                                   "Central and Eastern Europe" = "ce",
+                                   "Middle East and North Africa" = "mi",
+                                   "Sub-Saharan Africa" = "su",
+                                   "East Asia" = "ea",
+                                   "Southeast Asia" = "so",
+                                   "Commonwealth of Independent States" = "co",
+                                   "World" = "wo"))
+                     ,
+                     radioButtons(inputId = "reg", label = "Choose your region(s)",
+                                  c("Latin America and Caribbean" = "la",
+                                    "North America and ANZ" = "no",
+                                    "Western Europe" = "we",
+                                    "Central and Eastern Europe" = "ce",
+                                    "Middle East and North Africa" = "mi",
+                                    "Sub-Saharan Africa" = "su",
+                                    "East Asia" = "ea",
+                                    "Southeast Asia" = "so",
+                                    "Commonwealth of Independent States" = "co",
+                                    "World" = "wo")),
+                     
+                     checkboxGroupInput("varSelect", "Choose Measures of Happiness",
+                                        c("GDP per Capita",
+                                          "Generosity",
+                                          "Perceived Corruption",
+                                          "Social Support",
+                                          "Life Expectancy",
+                                          "Free Will")), 
+                     tags$img(height = 100,
+                              width = 100,
+                              src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"),
+                     tags$img(height = 100,
+                              width = 100,
+                              src = "https://i.pinimg.com/564x/57/d4/27/57d427b8b067fa790399f301bbe177c0.jpg"),
+
                    ))),
                  tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
                  tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
@@ -72,7 +73,7 @@ ui <- fluidPage( navbarPage("Pursuit of Happiness", collapsible = TRUE, fluid = 
                                   "North America" = "na",
                                   "Western Europe" = "we"))
                    
-                 ))))
+                 )))
 # fluidPage(
 #   selectInput(inputId = "region", label = "Choose a region",
 #               c("Select..." = "",
