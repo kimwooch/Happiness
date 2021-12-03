@@ -1,7 +1,7 @@
 library(shiny)
 library(ggplot2)
 library(plotly)
-ui <- navbarPage("Pursuit of Happiness",
+ui <- fluidPage( navbarPage("Pursuit of Happiness", collapsible = TRUE, fluid = TRUE, inverse = TRUE,
                  tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
                  tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
                    mainPanel(
@@ -36,9 +36,15 @@ ui <- navbarPage("Pursuit of Happiness",
                                       "Perceived Corruption",
                                       "Social Support",
                                       "Life Expectancy",
-                                      "Free Will"))
+                                      "Free Will")),
                  
-                 #  img(src = 'quokka.png', align = "right"),
+                  tags$img(height = 100,
+                          width = 100,
+                          src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"),
+                  
+                  tags$img(height = 100,
+                           width = 100,
+                           src = "https://i.pinimg.com/564x/57/d4/27/57d427b8b067fa790399f301bbe177c0.jpg"),
                    ))),
                  tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
                  tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
@@ -66,7 +72,7 @@ ui <- navbarPage("Pursuit of Happiness",
                                   "North America" = "na",
                                   "Western Europe" = "we"))
                    
-                 )))
+                 ))))
 # fluidPage(
 #   selectInput(inputId = "region", label = "Choose a region",
 #               c("Select..." = "",
