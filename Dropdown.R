@@ -1,14 +1,24 @@
 llibrary(shiny)
 library(ggplot2)
 library(plotly)
+library(shinydashboard)
 
 ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, fluid = TRUE, 
-                 tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
-                 tabPanel("Exploring the Data",h1("Exploring the Data"),fluidPage(
-                   mainPanel(
-                     selectInput(inputId = "region", label = "Choose a region",
-
-                                 c("Select..." = "",
+                 tabPanel("What is Happiness?", icon = icon("dashboard"),
+                          h1("What is Happiness?"),
+                          "Explain what the WHR does and how they define happiness",
+                          tags$img(height = 100,
+                                   width = 100,
+                                   src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg")),
+                 tabPanel("Exploring the Data",
+                          h1("Exploring the Data"), icon = icon("globe"),
+                          fluidPage(
+                            mainPanel(
+                              sidebarPanel(
+                                selectInput(
+                                inputId = "region", 
+                                label = "Choose a region",
+                                c("Select..." = "",
                                    "Latin America and Caribbean" = "la",
                                    "North America and ANZ" = "no",
                                    "Western Europe" = "we",
@@ -18,8 +28,8 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                                    "East Asia" = "ea",
                                    "Southeast Asia" = "so",
                                    "Commonwealth of Independent States" = "co",
-                                   "World" = "wo"))
-                     ,
+                                   "World" = "wo")),
+                     
                      radioButtons(inputId = "reg", label = "Choose your region(s)",
                                   c("Latin America and Caribbean" = "la",
                                     "North America and ANZ" = "no",
@@ -38,7 +48,7 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                                           "Perceived Corruption",
                                           "Social Support",
                                           "Life Expectancy",
-                                          "Free Will")), 
+                                          "Free Will"))), 
                      tags$img(height = 100,
                               width = 100,
                               src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"),
@@ -47,9 +57,19 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                               src = "https://i.pinimg.com/564x/57/d4/27/57d427b8b067fa790399f301bbe177c0.jpg"),
 
                    ))),
-                 tabPanel("A Paradox",h1("A Paradox"),"Explain disparity between 'happiness' levels and 'depression' levels"),
-                 tabPanel("What is Happiness (seriously)?","Explain our own modified way to calculate happiness",h1("What is Happiness (seriously)?"),fluidPage(
-                   selectInput(inputId = "region", label = "Choose a region",
+                 tabPanel("A Paradox", icon = icon("question"),
+                          h1("A Paradox"),
+                          "Explain disparity between 'happiness' levels and 'depression' levels",
+                          tags$img(height = 100,
+                                   width = 100,
+                                   src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg")),
+                 tabPanel("What is Happiness (seriously)?",
+                          icon = icon("diamond"),
+                          "Explain our own modified way to calculate happiness",
+                          h1("What is Happiness (seriously)?"),
+                          fluidPage(
+                   selectInput(inputId = "region", 
+                               label = "Choose a region",
                                c("Select..." = "",
                                  "Latin America/Caribbean" = "la",
                                  "North America" = "n",
@@ -61,19 +81,26 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                                   "Western Europe" = "we"))
                    
                  )),
-                 tabPanel("References",h1("References"),fluidPage(
-                   selectInput(inputId = "region", label = "Choose a region",
+                 tabPanel("References", icon = icon("book"),
+                          h1("References"),
+                          fluidPage(
+                            selectInput(
+                              inputId = "region", 
+                              label = "Choose a region",
                                c("Select..." = "",
                                  "Latin America/Caribbean" = "la",
                                  "North America" = "n",
                                  "Western Europe" = "w")),
-                   radioButtons(inputId = "reg", label = "Choose your region(s)",
-                                c("World" = "all",
-                                  "Latin America/Caribbean" = "lac",
-                                  "North America" = "na",
-                                  "Western Europe" = "we"))
-                   
-                 )))
+                   radioButtons(
+                     inputId = "reg",
+                     label = "Choose your region(s)",
+                     c("World" = "all",
+                       "Latin America/Caribbean" = "lac",
+                       "North America" = "na",
+                       "Western Europe" = "we")))),
+                 tags$img(height = 100,
+                          width = 100,
+                          src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"))
 # fluidPage(
 #   selectInput(inputId = "region", label = "Choose a region",
 #               c("Select..." = "",
