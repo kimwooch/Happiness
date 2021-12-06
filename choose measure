@@ -1,7 +1,7 @@
 library(shiny)
 library(ggplot2)
 wh <- read.csv(file = 'downloads/wh2020.csv')
-ui <- navbarPage("Pursuit of Happiness",
+ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, fluid = TRUE, 
                  tabPanel("What is Happiness?",h1("What is Happiness?"),"Explain what the WHR does and how they define happiness"),
                  tabPanel("Exploring the Data",h1("Exploring the Data"),
                           fluidPage(
@@ -46,19 +46,6 @@ ui <- navbarPage("Pursuit of Happiness",
                                   "Western Europe" = "we")),
                    
                  )))
-# fluidPage(
-#   selectInput(inputId = "region", label = "Choose a region",
-#               c("Select..." = "",
-#                 "Latin America/Caribbean" = "la",
-#                 "North America" = "n",
-#                 "Western Europe" = "w")),
-#   radioButtons(inputId = "reg", label = "Choose your region(s)",
-#                c("World" = "all",
-#                  "Latin America/Caribbean" = "lac",
-#                  "North America" = "na",
-#                  "Western Europe" = "we"))
-# 
-# )
 
 server <- function(input, output) {
   output$dotp <- renderPlot({
