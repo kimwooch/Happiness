@@ -6,7 +6,11 @@ library(shinydashboard)
 ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, fluid = TRUE, 
                  tabPanel("What is Happiness?", icon = icon("dashboard"),
                           h1("What is Happiness?"),
-                          "Explain what the WHR does and how they define happiness",
+                          "This seems to be a tough question to answer, but the United Nations’ Sustainable Solutions Development Network reckon they have the answer.
+\n\t The World Happiness Report is a publication of the Sustainable Solutions Development Network, which correlates subjective quality of life evaluations with different societal factors across different countries. Using polls from Gallup, they ask people from different countries to evaluate their life situation based on 10 being the best possible life for them and 0 being the worst. Using these results across countries and then relating them to other variables, World Happiness Reports are then able to explain how happy countries are in terms of other variables. 
+\n\t The variables chosen by World Happiness Reports are generosity, GDP per capita, social support, healthy life expectancy, perceptions of corruption, and freedom to make life choices. They also include ‘Dystopia’, a hypothetical “least-happy country” in which each of the variables measured has the lowest evaluation from the dataset. Therefore, no country in the dataset can score lower than dystopia. This value is then the baseline for each country’s score and is added in.
+\n\t Thus, the World Happiness Report tells us that right now they can explain most world happiness in terms of these variables. Let’s explore the actual data!
+",
                           tags$img(height = 100,
                                    width = 100,
                                    src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg")),
