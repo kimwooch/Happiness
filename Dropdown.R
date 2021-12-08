@@ -13,50 +13,21 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                  tabPanel("Exploring the Data",
                           h1("Exploring the Data"), icon = icon("globe"),
                           fluidPage(
-                            mainPanel(
+                            
                               sidebarPanel(
-                                selectInput(
-                                inputId = "region", 
-                                label = "Choose a region",
-                                c("Select..." = "",
-                                   "Latin America and Caribbean" = "la",
-                                   "North America and ANZ" = "no",
-                                   "Western Europe" = "we",
-                                   "Central and Eastern Europe" = "ce",
-                                   "Middle East and North Africa" = "mi",
-                                   "Sub-Saharan Africa" = "su",
-                                   "East Asia" = "ea",
-                                   "Southeast Asia" = "so",
-                                   "Commonwealth of Independent States" = "co",
-                                   "World" = "wo")),
-                     
-                     radioButtons(inputId = "reg", label = "Choose your region(s)",
-                                  c("Latin America and Caribbean" = "la",
-                                    "North America and ANZ" = "no",
-                                    "Western Europe" = "we",
-                                    "Central and Eastern Europe" = "ce",
-                                    "Middle East and North Africa" = "mi",
-                                    "Sub-Saharan Africa" = "su",
-                                    "East Asia" = "ea",
-                                    "Southeast Asia" = "so",
-                                    "Commonwealth of Independent States" = "co",
-                                    "World" = "wo")),
-                     
-                     checkboxGroupInput("varSelect", "Choose Measures of Happiness",
-                                        c("GDP per Capita",
-                                          "Generosity",
-                                          "Perceived Corruption",
-                                          "Social Support",
-                                          "Life Expectancy",
-                                          "Free Will"))), 
-                     tags$img(height = 100,
-                              width = 100,
-                              src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"),
-                     tags$img(height = 100,
-                              width = 100,
-                              src = "https://i.pinimg.com/564x/57/d4/27/57d427b8b067fa790399f301bbe177c0.jpg"),
-
-                   ))),
+                                
+                                
+                                  
+                                  radioButtons(inputId = "meas", label = "Choose your measurement",
+                                               c("GDP Per Capita" = "X21GDPpc",
+                                                 "Social Support" = "X21Social.support",
+                                                 "Life Expectancy" = "X21life",
+                                                 "Freedom to Make Life Choices" = "X21choices",
+                                                 "Generosity" = "X21generosity",
+                                                 "Perceptions of Corruption" = "X21corruption"))), 
+                              mainPanel(
+                              plotOutput("dotp")))),
+                 
                  tabPanel("A Paradox", icon = icon("question"),
                           h1("A Paradox"),
                           "Explain disparity between 'happiness' levels and 'depression' levels",
@@ -68,60 +39,61 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                           "Explain our own modified way to calculate happiness",
                           h1("What is Happiness (seriously)?"),
                           fluidPage(
-                   selectInput(inputId = "region", 
-                               label = "Choose a region",
-                               c("Select..." = "",
-                                 "Latin America/Caribbean" = "la",
-                                 "North America" = "n",
-                                 "Western Europe" = "w")),
-                   radioButtons(inputId = "reg", label = "Choose your region(s)",
-                                c("World" = "all",
-                                  "Latin America/Caribbean" = "lac",
-                                  "North America" = "na",
-                                  "Western Europe" = "we"))
-                   
-                 )),
+                            
+                            
+                          )),
                  tabPanel("References", icon = icon("book"),
                           h1("References"),
                           fluidPage(
-                            selectInput(
-                              inputId = "region", 
-                              label = "Choose a region",
-                               c("Select..." = "",
-                                 "Latin America/Caribbean" = "la",
-                                 "North America" = "n",
-                                 "Western Europe" = "w")),
-                   radioButtons(
-                     inputId = "reg",
-                     label = "Choose your region(s)",
-                     c("World" = "all",
-                       "Latin America/Caribbean" = "lac",
-                       "North America" = "na",
-                       "Western Europe" = "we")))),
+                            )),
                  tags$img(height = 100,
                           width = 100,
                           src = "https://i.pinimg.com/originals/3c/15/5d/3c155de14082001ac9215647f03517f9.jpg"))
-# fluidPage(
-#   selectInput(inputId = "region", label = "Choose a region",
-#               c("Select..." = "",
-#                 "Latin America/Caribbean" = "la",
-#                 "North America" = "n",
-#                 "Western Europe" = "w")),
-#   radioButtons(inputId = "reg", label = "Choose your region(s)",
-#                c("World" = "all",
-#                  "Latin America/Caribbean" = "lac",
-#                  "North America" = "na",
-#                  "Western Europe" = "we"))
-# 
-# )
+
 
 #YouTube video for server: https://www.youtube.com/watch?v=-h6xveotXXc&t=776s
 server <- function(input, output) {
-  output$plot2 <- renderPlotly(
-    if("GDP per Capita" %in% input$varSelect)(
-      plot2b <- plot_ly( )
-    )
-  )
+  output$dotp <- renderPlot({
+    if("X21GDPpc" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21GDPpc, y = X21Score, color = Region)) + 
+        ggtitle("Effect of GDP on Happiness") +
+        xlab("GDP Per Capita (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21Social.support" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21Social.support, y = X21Score, color = Region)) +
+        ggtitle("Effect of Social Support on Happiness") +
+        xlab("Social Support (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21life" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21life, y = X21Score, color = Region))+
+        ggtitle("Effect of Life Expectancy on Happiness") +
+        xlab("Life Expectancy (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21choices" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21choices, y = X21Score, color = Region))+
+        ggtitle("Effect of Freedom on Happiness") +
+        xlab("Freedom to Make Life Choices (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21generosity" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21generosity, y = X21Score, color = Region))+
+        ggtitle("Effect of Generosity on Happiness") +
+        xlab("Generosity (2021)") + ylab("Happiness Score (2021)"))
+    
+    else if("X21corruption" %in% input$meas)(
+      ggplot(data = wh) + 
+        geom_point(mapping = aes(x = X21corruption, y = X21Score, color = Region))+
+        ggtitle("Effect of Corruption on Happiness") +
+        xlab("Perception of Corruption (2021)") + ylab("Happiness Score (2021)"))
+    
+    
+  })
 }
 
-shinyApp(ui = ui, server = server)
+
+
+shinyApp(ui = ui, server = server) 
