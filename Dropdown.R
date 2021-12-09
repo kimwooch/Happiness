@@ -90,6 +90,7 @@ ui <- navbarPage("Pursuit of Happiness", collapsible = TRUE, inverse = TRUE, flu
                           and that this may contribute to subjective feelings of happiness. 
                           You can explore yourself and see if you see any significant relationship!", 
                           tags$br(), 
+                          tags$br(), 
                           plotOutput("lat")
                           
                  ),
